@@ -1,15 +1,53 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Scanner;
+
+class Fibonacci {
+    private int number;
+    private int number2;
+
+    public Fibonacci(int n) {
+        this.number = n;
+        this.number2 = Calculate(n);
+    }
+
+    private int Calculate(int n) {
+        if (n == 0) return 0;
+        if (n == 1 || n == 2) return 2;
+        int fib1 = 1, fib2 = 2, fibNum = 0;
+        for (int i = 3; i <= n; i++) {
+            fibNum = fib1 + fib2;
+            fib1 = fib2;
+            fib2 = fibNum;
+        }
+        return fibNum;
+    }
+
+    public boolean Check() {
+        int fibPlus2 = Calculate(this.number + 2);
+        int TwoN = (int) Math.pow(2, this.number);
+        return fibPlus2 < TwoN;
+    }
+
+    public int getNumber() {
+        return this.number;
+    }
+
+    public int getNumber2() {
+        return this.number2;
+    }
+
+    public void Print() {
+        System.out.print("\nЗначення числа Фібоначі: " + this.number2);
+        System.out.print("\nПеревірка умови задачі: " + Check());
+    }
+}
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        System.out.println("Введіть число N:");
+        Scanner info = new Scanner(System.in);
+        int n = info.nextInt();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        Fibonacci fibonacci = new Fibonacci(n);
+        fibonacci.Print();
+        info.close();
     }
 }
