@@ -42,12 +42,28 @@ class Fibonacci {
 }
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Введіть число N:");
+        boolean check = true;
         Scanner info = new Scanner(System.in);
-        int n = info.nextInt();
 
-        Fibonacci fibonacci = new Fibonacci(n);
-        fibonacci.Print();
+        while (check) {
+            System.out.println("Введіть число N:");
+
+            if (info.hasNextInt()) {
+                int n = info.nextInt();
+                if (n > 0) {
+                    check = false;
+                    Fibonacci fibonacci = new Fibonacci(n);
+                    fibonacci.Print();
+                } else {
+                    System.out.println("Число має бути додатнім. Введіть ще раз:");
+                }
+            } else {
+                System.out.println("Введені дані не є числом. Введіть ще раз:");
+                info.next();
+            }
+        }
         info.close();
     }
+
 }
+
